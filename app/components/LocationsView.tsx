@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppLayout from "~/layouts/AppLayout";
 import MainSection from "./MainSection";
 import { FilterPanel } from "./FilterPanel";
 import { useLocationsResults } from "~/hooks/useLocationsResults";
 import SpinnerLoader from "./SpinnerLoader";
+import { useNavigate } from "@remix-run/react";
 
 export const LocationsView = () => {
   const [page, setPage] = useState(1);
   const [dimension] = useState("");
   const [type] = useState("");
+  const navigate = useNavigate();
+  
   const { data, isLoading, error } = useLocationsResults({
     page,
     dimension,
@@ -32,6 +35,10 @@ export const LocationsView = () => {
       setPage((prevPage) => prevPage + 1);
     }
   };
+
+  useEffect(() => {
+    navigate(`/locations/${page}`);
+  }, [navigate, page]);
 
   return (
     <AppLayout>

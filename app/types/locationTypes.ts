@@ -39,3 +39,8 @@ export interface LocationQueryResponse {
     results: LocationResult[]; // Using the LocationResult type defined above
   };
 }
+
+
+export interface GetLocationResponse {
+  location: LocationResult | null;
+}

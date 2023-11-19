@@ -30,3 +30,27 @@ query GetLocations($page: Int!, $dimension: String!, $type: String) {
     }
   }
 `
+
+export const GET_LOCATION = gql `
+query GetLocation($id: ID!) {
+  location(id :$id) { 
+      id
+      name
+      type
+      dimension
+      residents {
+        id
+        name
+        status
+        species
+        gender
+        image
+        origin {
+          id
+        }
+      }
+      created
+    }
+  }
+`
+

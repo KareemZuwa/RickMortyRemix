@@ -1,7 +1,7 @@
 import { LocationsView } from "~/components/LocationsView";
 
-const locations = () => {
+const location = () => {
   return <LocationsView />;
 };
 
-export default locations;
+export default location;

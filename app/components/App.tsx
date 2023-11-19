@@ -20,13 +20,18 @@ const App = () => {
 
   return (
     <AppLayout>
-      <MainSection>
-        <div>Welcome To The Fantastic Universe of Rick and Morty</div>
-        <div>Please Navigate to Location to explore</div>
-        <Link to={`/locations/${page}`}>
-          Go to a route that renders locations
-        </Link>
-      </MainSection>
+      <div className="flex-1">
+        <MainSection>
+          <div className="flex flex-col justify-between">
+          <div>Welcome To The Fantastic Universe of Rick and Morty</div>
+          <div>Please Navigate to Location to explore</div>
+          <Link to={`/locations/${page}`}>
+            Go to a route that renders locations
+          </Link>
+          </div>
+       
+        </MainSection>
+      </div>
     </AppLayout>
   );
 };

@@ -36,7 +36,7 @@ export const LocationsView = () => {
               <h2 className="text-gray-900 text-3xl font-racing tracking-wide antialiased underline decoration-galaxyOrange-900">
                 Locations
               </h2>
-              <FilterPanel onTypeFilterChange={setType} onDimensionFilterChange={setDimension}/>
+              <FilterPanel onTypeFilterChange={setType} onDimensionFilterChange={setDimension} dimension={dimension} type={type}/>
             </div>
 
             <div className="h-full flex justify-between">

@@ -45,6 +45,7 @@ const Pagination = ({ info, page, onPageChange }: PaginationProps) => {
           >
             Previous
           </button>
+          <span className="flex xs:hidden items-center text-xs">{page} / {info?.pages}</span>
           <button
             onClick={handleNextClick}
             disabled={!info?.next}

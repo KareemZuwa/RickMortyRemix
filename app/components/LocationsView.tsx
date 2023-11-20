@@ -32,11 +32,16 @@ export const LocationsView = () => {
       <div>
         <MainSection>
           <div>
-            <div className="flex justify-between py-8">
-              <h2 className="text-gray-900 text-3xl font-racing tracking-wide antialiased underline decoration-galaxyOrange-900">
+            <div className="sm:flex justify-between py-8">
+              <h2 className="text-center sm:text-left text-gray-900 text-3xl font-racing tracking-wide antialiased underline decoration-galaxyOrange-900">
                 Locations
               </h2>
-              <FilterPanel onTypeFilterChange={setType} onDimensionFilterChange={setDimension} dimension={dimension} type={type}/>
+              <FilterPanel
+                onTypeFilterChange={setType}
+                onDimensionFilterChange={setDimension}
+                dimension={dimension}
+                type={type}
+              />
             </div>
 
             <div className="h-full flex justify-between">

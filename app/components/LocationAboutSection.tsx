@@ -36,7 +36,7 @@ export const LocationAboutSection = ({
     )?.length ?? 0;
 
   return (
-    <div className="space-y-4 border-2 border-gray-900 p-8 rounded-md mb-8">
+    <div className="text-sm sm:text-base space-y-4 border-2 border-gray-900 p-8 rounded-md mb-8 antialiased">
       <div>
         <h3>
           <b>Dimension:</b> {location?.dimension}

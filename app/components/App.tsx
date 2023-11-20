@@ -1,7 +1,7 @@
 import React from "react";
 import AppLayout from "~/layouts/AppLayout";
 import MainSection from "./MainSection";
-import { ArrowDownIcon } from '@heroicons/react/24/solid'
+import { ArrowDownIcon } from "@heroicons/react/24/solid";
 
 import { useLocationsInfo } from "../hooks/useLocationsInfo";
 import { Link } from "@remix-run/react";
@@ -24,21 +24,30 @@ const App = () => {
               <SpinnerLoader />
             </div>
           ) : (
-            <div className="h-96 flex-1 flex flex-col items-center justify-around">
-              <div className="flex flex-col items-center justify-between font-racing text-3xl">
+            <div className="pt-8 h-96 flex-1 flex flex-col items-center justify-around">
+              <div className="flex flex-col items-center text-center justify-between font-racing text-2xl lg:text-3xl px-4">
                 <div>Welcome to the fantastic Universe of Rick and Morty</div>
               </div>
-              <div>
-                Please <b className="text-galaxyOrange-900 border-b-2 border-gray-900 border-spacing-4">Click the yellow image</b> to Navigate the Locations
+              <div className="pt-8 text-sm lg:text-base text-center">
+                Please{" "}
+                <b className=" text-galaxyOrange-900 border-b-2 border-gray-900 border-spacing-4">
+                  Click the yellow image
+                </b>{" "}
+                to Navigate the Locations
               </div>
-              <ArrowDownIcon className="w-6"/>
+              <ArrowDownIcon className="w-6 pb-4" />
               <Link className="" to={`/locations/${page}`}>
                 <div>
-                  <img className="w-40 h-40" src="favicon.ico" alt="icon" />
+                  <img
+                    className="w-40 h-40"
+                    src="favicon.ico"
+                    alt="icon"
+                  />
                 </div>
               </Link>
-              <p className="text-sm">
-                "This application is the result of a coding assignment. Wubba Lubba Dub Dub!"
+              <p className="pt-4 text-xs text-center">
+                "This application is the result of a coding assignment. Wubba
+                Lubba Dub Dub!"
               </p>
             </div>
           )}

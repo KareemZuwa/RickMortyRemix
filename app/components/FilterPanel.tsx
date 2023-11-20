@@ -72,9 +72,9 @@ export const FilterPanel = ({
   dimensionOptions.unshift({ value: "", label: "All Dimensions" });
 
   return (
-    <div className="flex space-x-8">
+    <div className="pt-8 px-4 sm:px-0 sm:pt-0 sm:flex space-y-8 sm:space-y-0 sm:space-x-8">
       <Select
-        className="w-40 border-2 border-gray-900 rounded-md"
+        className="w-full sm:w-40 border-2 border-gray-900 rounded-md"
         id="typeDropdown"
         options={typeOptions}
         onChange={(selectedOption) =>
@@ -84,7 +84,7 @@ export const FilterPanel = ({
       />
 
       <Select
-        className="w-40 border-2 border-gray-900 rounded-md"
+        className="w-full sm:w-40 border-2 border-gray-900 rounded-md"
         id="dimensionDropdown"
         options={dimensionOptions}
         onChange={(selectedOption) =>

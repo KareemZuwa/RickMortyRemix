@@ -16,11 +16,11 @@ export const LocationView = ({ locationResponse }: LocationViewProps) => {
 
   return (
     <div>
-      <div className="flex justify-between py-8">
-        <h2 className="text-gray-900 text-3xl font-racing tracking-wide antialiased underline decoration-galaxyOrange-900">
+      <div className="sm:flex justify-between py-8">
+        <h2 className="text-center sm:text-left text-gray-900 text-3xl font-racing tracking-wide antialiased underline decoration-galaxyOrange-900">
           {location?.name}
         </h2>
-        <div className="flex">
+        <div className="flex justify-center text-center pt-4 sm:pt-0">
           <GoBackButton />
         </div>
       </div>

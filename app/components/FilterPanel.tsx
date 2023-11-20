@@ -1,57 +1,60 @@
 import React from "react";
+import useTypes from "~/hooks/useTypes";
+import Select from "react-select";
+import useDimensions from "~/hooks/useDimensions";
 interface FilterPanelProps {
-  uniqueTypes: string[];
-  uniqueDimensions: string[];
-  onFilterChange: (
-    selectedType: string | undefined,
-    selectedDimension: string | undefined
-  ) => void;
+  onTypeFilterChange: (type: string) => void;
+  onDimensionFilterChange: (dimension: string) => void;
 }
 
 export const FilterPanel = ({
-  uniqueTypes,
-  uniqueDimensions,
-  onFilterChange,
+  onTypeFilterChange,
+  onDimensionFilterChange,
 }: FilterPanelProps) => {
-  const handleTypeChange = (selectedType: string | undefined) => {
-    onFilterChange(selectedType, undefined);
-  };
+  const {
+    data: allTypesData,
+    isLoading: allTypesIsLoading,
+    error: allTypesError,
+  } = useTypes();
+  const {
+    data: allDimensionsData,
+    isLoading: allDimensionsIsLoading,
+    error: allDimensionsError,
+  } = useDimensions();
 
-  const handleDimensionChange = (selectedDimension: string | undefined) => {
-    onFilterChange(undefined, selectedDimension);
-  };
+  let uniqueTypes = allTypesData?.uniqueTypes || [];
+  let uniqueDimensions = allDimensionsData?.uniqueDimensions || [];
+
+  if (allTypesIsLoading || allDimensionsIsLoading) return <p>Loading...</p>;
+
+  if (allTypesError || allDimensionsError) {
+    return <p>Error fetching</p>;
+  }
 
   return (
-    <div className="h-16 flex flex-row justify-between items-center">
-      <h3 className="text-gray-900">
-        Please choose a Location or filter Locations by Type or Dimension
-      </h3>
+    <div className="flex space-x-8">
+      <Select
+        className="w-44 border-2 border-gray-900 rounded-md"
+        id="typeDropdown"
+        options={uniqueTypes.map((type) => ({ value: type, label: type }))}
+        onChange={(selectedOption) =>
+          onTypeFilterChange(selectedOption?.value || "")
+        }
+        defaultValue={{ value: " ", label: "All Types" }}
+      />
 
-      <div className="flex flex-row space-x-8">
-        <select
-          className="w-16"
-          onChange={(e) => handleTypeChange(e.target.value)}
-        >
-          <option defaultValue={"Select"}>Select a type</option>
-          {uniqueTypes?.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-
-        <select
-          className="w-16"
-          onChange={(e) => handleDimensionChange(e.target.value)}
-        >
-          <option defaultValue={"Select"}>Select a dimension</option>
-          {uniqueDimensions?.map((dimension) => (
-            <option key={dimension} value={dimension}>
-              {dimension}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Select
+        className="w-44 border-2 border-gray-900 rounded-md"
+        id="dimensionDropdown"
+        options={uniqueDimensions.map((dimension) => ({
+          value: dimension,
+          label: dimension,
+        }))}
+        onChange={(selectedOption) =>
+          onDimensionFilterChange(selectedOption?.value || "")
+        }
+        defaultValue={{ value: " ", label: "All Dimensions" }}
+      />
     </div>
   );
 };

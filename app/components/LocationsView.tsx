@@ -5,9 +5,8 @@ import { useLocationsResults } from "~/hooks/useLocationsResults";
 import SpinnerLoader from "./SpinnerLoader";
 import { useNavigate } from "@remix-run/react";
 import Pagination from "./Pagination";
-import { removeDuplicatesFromArray } from "~/utils/removeDuplicates";
-import { FilterControl } from "~/components/FilterControl";
 import LocationCard from "./LocationCard";
+import { FilterPanel } from "./FilterPanel";
 
 export const LocationsView = () => {
   const [page, setPage] = useState(1);
@@ -24,26 +23,9 @@ export const LocationsView = () => {
   const results = data?.results || [];
   const info = data?.info;
 
-  console.log(results, info);
-
   useEffect(() => {
     navigate(`/locations/${page}`);
   }, [navigate, page]);
-
-  const handleTypeChange = (event: { target: { value: string } }) => {
-    setType(event.target.value);
-  };
-
-  const handleDimensionChange = (event: { target: { value: string } }) => {
-    setDimension(event.target.value);
-  };
-
-  const currentTypes = data?.results.map((results) => results.type);
-  const uniqueTypes = removeDuplicatesFromArray(currentTypes);
-  console.log(uniqueTypes);
-  const currentDimensions = data?.results.map((results) => results.dimension);
-  const uniqueDimensions = removeDuplicatesFromArray(currentDimensions);
-  console.log(uniqueDimensions);
 
   return (
     <AppLayout>
@@ -54,20 +36,7 @@ export const LocationsView = () => {
               <h2 className="text-gray-900 text-3xl font-racing tracking-wide antialiased underline decoration-galaxyOrange-900">
                 Locations
               </h2>
-              <div className="flex place-items-center flex-row space-x-8">
-                <FilterControl
-                  label="Type"
-                  options={uniqueTypes as string[]}
-                  selectedValue={type}
-                  onChange={handleTypeChange}
-                />
-                <FilterControl
-                  label="Dimension"
-                  options={uniqueDimensions as string[]}
-                  selectedValue={dimension}
-                  onChange={handleDimensionChange}
-                />
-              </div>
+              <FilterPanel onTypeFilterChange={setType} onDimensionFilterChange={setDimension}/>
             </div>
 
             <div className="h-full flex justify-between">

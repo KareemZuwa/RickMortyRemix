@@ -8,8 +8,8 @@ const AppLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       <Header />
       <main className="flex-1">
         {children}
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 };

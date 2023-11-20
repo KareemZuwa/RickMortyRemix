@@ -39,7 +39,7 @@ const BreadCrumbs = () => {
   };
 
   return (
-    <div className="flex justify-between h-12 border-b-2 border-gray-900">
+    <div className="hidden justify-between h-12 border-b-2 border-gray-900">
       <div className="flex items-center">{generateBreadcrumbLinks()}</div>
     </div>
   );

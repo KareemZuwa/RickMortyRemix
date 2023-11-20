@@ -1,32 +1,59 @@
 import React from "react";
 import type { LocationInfo } from "~/types/locationTypes";
+
 interface PaginationProps {
-  page: number;
   info: LocationInfo | undefined;
-  setPage: (prevPage: (prevPage: number) => number) => void;
+  page: number;
+  onPageChange: (newPage: number) => void;
 }
 
-const Pagination = ({ page, info, setPage }: PaginationProps) => {
+const Pagination = ({ info, page, onPageChange }: PaginationProps) => {
   const handlePrevClick = () => {
     if (page > 1) {
-      setPage((prevPage: number) => prevPage - 1);
+      onPageChange(page - 1);
     }
   };
 
   const handleNextClick = () => {
-    if (info?.next) {
-      setPage((prevPage: number) => prevPage + 1);
+    if (info?.next != null && page < info.next) {
+      onPageChange(page + 1);
     }
   };
   return (
-    <div className="mt-16 w-[500px] flex flex-row justify-between">
-      <button onClick={handlePrevClick} disabled={page === 1}>
-        Prev
-      </button>
-      <span>Page {page}</span>
-      <button onClick={handleNextClick} disabled={!info?.next}>
-        Next
-      </button>
+    <div>
+      {" "}
+      <nav
+        className="flex items-center justify-between border-t-2 border-gray-900 bg-white py-6"
+        aria-label="Pagination"
+      >
+        <div className="hidden sm:block">
+          <div className="flex space-x-4 divide-gray-900 divide-x-2">
+          <p className="text-xs text-gray-900">
+            Found: <b>{info?.count}</b> Locations
+          </p>
+          <p className="pl-4 text-xs text-gray-900">
+            Showing page <span><b>{page}</b></span> to <span><b>{info?.pages}</b></span>
+          </p>
+          </div>
+         
+        </div>
+        <div className="flex flex-1 justify-between sm:justify-end">
+          <button
+            onClick={handlePrevClick}
+            disabled={page === 1}
+            className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-xs font-semibold text-gray-900 ring-2 ring-inset ring-gray-300 hover:bg-gray-200 focus-visible:outline-offset-0 ease-in duration-300"
+          >
+            Previous
+          </button>
+          <button
+            onClick={handleNextClick}
+            disabled={!info?.next}
+            className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-xs font-semibold text-gray-900 ring-2 ring-inset ring-gray-300 hover:bg-gray-200 focus-visible:outline-offset-0 ease-in duration-300"
+          >
+            Next
+          </button>
+        </div>
+      </nav>
     </div>
   );
 };

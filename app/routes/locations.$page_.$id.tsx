@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "@remix-run/react";
 import useLocation from "~/hooks/useLocation";
-// import { LocationView } from "~/components/LocationView";
 import AppLayout from "~/layouts/AppLayout";
 import MainSection from "~/components/MainSection";
 import { LocationView } from "~/components/LocationView";
@@ -24,7 +23,6 @@ const LocationDetail = () => {
         <div className="flex-1">
           <MainSection>
             <div className="flex-grow-1 flex flex-col justify-between">
-              <div>VA fan håller du på med</div>
               <LocationView locationResponse={data} />
             </div>
           </MainSection>

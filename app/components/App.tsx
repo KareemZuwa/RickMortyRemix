@@ -22,14 +22,18 @@ const App = () => {
     <AppLayout>
       <div className="flex-1">
         <MainSection>
-          <div className="flex flex-col justify-between">
-          <div>Welcome To The Fantastic Universe of Rick and Morty</div>
-          <div>Please Navigate to Location to explore</div>
-          <Link to={`/locations/${page}`}>
-            Go to a route that renders locations
-          </Link>
+          <div className="h-96 flex-1 flex flex-col items-center justify-around">
+            <div className="flex flex-col items-center justify-between font-racing text-3xl">
+              <div>Welcome to the fantastic Universe of Rick and Morty</div>
+            </div>
+            <div>Pleace <b>Click the icon</b> to Navigate to Location to explore</div>
+            <Link className="" to={`/locations/${page}`}>
+            <div >
+              <img className="w-40 h-40" src="favicon.ico" alt="icon" />
+            </div>
+            </Link>
+            <p className="text-sm">"This application is the result of a coding assignment. Enjoy!"</p>
           </div>
-       
         </MainSection>
       </div>
     </AppLayout>

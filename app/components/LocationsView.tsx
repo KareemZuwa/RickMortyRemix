@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import AppLayout from "~/layouts/AppLayout";
 import MainSection from "./MainSection";
-import { FilterPanel } from "./FilterPanel";
 import { useLocationsResults } from "~/hooks/useLocationsResults";
 import SpinnerLoader from "./SpinnerLoader";
-import { Link, useNavigate } from "@remix-run/react";
+import { useNavigate } from "@remix-run/react";
 import Pagination from "./Pagination";
+import { removeDuplicatesFromArray } from "~/utils/removeDuplicates";
+import { FilterControl } from "~/components/FilterControl";
+import LocationCard from "./LocationCard";
 
 export const LocationsView = () => {
   const [page, setPage] = useState(1);
-  const [dimension] = useState("");
-  const [type] = useState("");
+  const [dimension, setDimension] = useState<string | undefined>("");
+  const [type, setType] = useState<string | undefined>("");
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useLocationsResults({
@@ -19,7 +21,7 @@ export const LocationsView = () => {
     type,
   });
 
-  const results = data?.results;
+  const results = data?.results || [];
   const info = data?.info;
 
   console.log(results, info);
@@ -28,29 +30,62 @@ export const LocationsView = () => {
     navigate(`/locations/${page}`);
   }, [navigate, page]);
 
+  const handleTypeChange = (event: { target: { value: string } }) => {
+    setType(event.target.value);
+  };
+
+  const handleDimensionChange = (event: { target: { value: string } }) => {
+    setDimension(event.target.value);
+  };
+
+  const currentTypes = data?.results.map((results) => results.type);
+  const uniqueTypes = removeDuplicatesFromArray(currentTypes);
+  console.log(uniqueTypes);
+  const currentDimensions = data?.results.map((results) => results.dimension);
+  const uniqueDimensions = removeDuplicatesFromArray(currentDimensions);
+  console.log(uniqueDimensions);
+
   return (
     <AppLayout>
-      <div className="flex-1">
+      <div>
         <MainSection>
-          <div className="flex-grow-1 flex flex-col justify-between ">
-            <FilterPanel />
+          <div>
+            <div className="flex justify-between py-8">
+              <h2 className="text-gray-900 text-3xl font-racing tracking-wide antialiased underline decoration-galaxyOrange-900">
+                Locations
+              </h2>
+              <div className="flex place-items-center flex-row space-x-8">
+                <FilterControl
+                  label="Type"
+                  options={uniqueTypes as string[]}
+                  selectedValue={type}
+                  onChange={handleTypeChange}
+                />
+                <FilterControl
+                  label="Dimension"
+                  options={uniqueDimensions as string[]}
+                  selectedValue={dimension}
+                  onChange={handleDimensionChange}
+                />
+              </div>
+            </div>
 
-            <div>
+            <div className="h-full flex justify-between">
               {error ? (
                 <div>Error Loading Locations</div>
               ) : isLoading ? (
-                <SpinnerLoader />
+                <div className="h-full w-full flex items-center justify-center py-16">
+                  <SpinnerLoader />
+                </div>
               ) : (
-                results?.map((location) => (
-                  <div key={location.id}>
-                    <Link to={`/location/${location.id}`}>
-                      <div>{location.name}</div>
-                    </Link>
-                  </div>
-                ))
+                <div className="h-full flex justify-between">
+                  <LocationCard results={results} page={page} />
+                </div>
               )}
             </div>
-            <Pagination page={page} info={info} setPage={setPage} />
+            <div className="mt-8">
+              <Pagination page={page} info={info} onPageChange={setPage} />
+            </div>
           </div>
         </MainSection>
       </div>

@@ -36,11 +36,15 @@ const App = () => {
                 to Navigate the Locations
               </div>
               <ArrowDownIcon className="w-6 pb-4" />
-              <button type="button">
-                <Link className="" to={`/locations/${page}`}>
-                  <img className="w-40 h-40" src="favicon.ico" alt="icon-link-to-locations" />
-                </Link>
-              </button>
+              <Link className="" to={`/locations/${page}`}>
+                <button type="button">
+                  <img
+                    className="w-40 h-40"
+                    src="favicon.ico"
+                    alt="icon-link-to-locations"
+                  />
+                </button>
+              </Link>
               <p className="pt-4 text-xs text-center">
                 "This application is the result of a coding assignment. Wubba
                 Lubba Dub Dub!"

@@ -35,7 +35,7 @@ test.describe("Navigate to Locations page, test are divided in test steps", () =
       name: "Locations",
       exact: true,
     });
-    const iconLinkButton = page.getByRole("link", {
+    const iconLinkButton = page.getByRole("button", {
       name: "icon-link-to-locations",
       exact: true,
     });

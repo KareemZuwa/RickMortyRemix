@@ -25,7 +25,8 @@ npm run test
 ```
 
 This starts your test on terminal and will run on firefox, chromuim and webkit(if you have an too old version of OS webkit will fail).
-After test run  Serving HTML report at http://localhost:9323. Press Ctrl+C on terminal to quit the test.
+The test only contains a snippet test for navigating from landing to the Locations page
+After test run Playwright will serve HTML report at http://localhost:9323. Press Ctrl+C on terminal to quit the test.
 
 ## Deployment
 

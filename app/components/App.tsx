@@ -38,7 +38,7 @@ const App = () => {
               <ArrowDownIcon className="w-6 pb-4" />
               <button type="button">
                 <Link className="" to={`/locations/${page}`}>
-                  <img className="w-40 h-40" src="favicon.ico" alt="icon" />
+                  <img className="w-40 h-40" src="favicon.ico" alt="icon-link-to-locations" />
                 </Link>
               </button>
               <p className="pt-4 text-xs text-center">

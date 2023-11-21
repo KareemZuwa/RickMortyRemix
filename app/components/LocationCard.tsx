@@ -9,13 +9,19 @@ interface LocationCardProps {
 
 const LocationCard = ({ results, page }: LocationCardProps) => {
   return (
-    <ul className="grid grid-cols-2 gap-6 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10">
+    <ul
+      data-testid="locations"
+      className="grid grid-cols-2 gap-6 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10"
+    >
       {results.map((location) => (
         <Link
           key={location.id}
           to={`/locations/${page}/${location.id}?${location.name}`}
         >
-          <li className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow border-2 border-gray-900">
+          <li
+            data-testid="location-item"
+            className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow border-2 border-gray-900"
+          >
             <div className="flex flex-1 flex-col p-4">
               <img
                 className="mx-auto h-16 w-16 flex-shrink-0"

@@ -62,14 +62,14 @@ export const FilterPanel = ({
     return <p>Error fetching filters</p>;
   }
 
-  // Create options with 'value' and 'label' properties so react-select is happy
+  // Create object options with 'value' and 'label' properties so react-select is happy
   const typeOptions = uniqueTypes.map((type) => ({ value: type, label: type }));
   const dimensionOptions = uniqueDimensions.map((dimension) => ({
     value: dimension,
     label: dimension,
   }));
 
-  // Add "All Types" and "All Dimensions" options
+  // Add "All Types" and "All Dimensions" options to top of list
   typeOptions.unshift({ value: "", label: "All Types" });
   dimensionOptions.unshift({ value: "", label: "All Dimensions" });
 

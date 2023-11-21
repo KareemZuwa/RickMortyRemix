@@ -20,7 +20,6 @@ const Pagination = ({ info, page, onPageChange }: PaginationProps) => {
     }
   };
 
-  console.log(info?.pages);
   return (
     <div>
       {" "}

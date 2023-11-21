@@ -15,7 +15,7 @@ export const LocationView = ({ locationResponse }: LocationViewProps) => {
   const location = locationResponse?.location;
 
   return (
-    <div>
+    <div>   
       <div className="sm:flex justify-between py-8">
         <h2 className="text-center sm:text-left text-gray-900 text-3xl font-racing tracking-wide antialiased underline decoration-galaxyOrange-900">
           {location?.name}
@@ -30,7 +30,13 @@ export const LocationView = ({ locationResponse }: LocationViewProps) => {
         <LocationAboutSection location={location as LocationResult} />
         <div className="py-6 border-t-2 border-gray-900">
           <div className="pb-4">Residents:</div>
-          <ResidentCard locationContent={location as LocationResult} />
+          {location?.residents.length === 0 ? (
+            <div className="h-full w-full flex items-center justify-center py-16 flex-col">
+              <h3 className="text-xl">No residents found</h3>
+            </div>
+          ) : (
+            <ResidentCard locationContent={location as LocationResult} />
+          )}
         </div>
       </div>
     </div>

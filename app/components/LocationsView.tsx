@@ -41,6 +41,7 @@ export const LocationsView = () => {
                 onDimensionFilterChange={setDimension}
                 dimension={dimension}
                 type={type}
+                setPage={setPage}
               />
             </div>
 
@@ -51,8 +52,13 @@ export const LocationsView = () => {
                 <div className="h-full w-full flex items-center justify-center py-16">
                   <SpinnerLoader />
                 </div>
+              ) : results.length === 0 ? (
+                <div className="h-full w-full flex items-center justify-center py-16 flex-col">
+                  <h3 className="text-xl">No locations found</h3>
+                  <p>Please reset filters</p>
+                </div>
               ) : (
-                <div className="h-full flex justify-between">
+                <div className="h-full w-full flex justify-between">
                   <LocationCard results={results} page={page} />
                 </div>
               )}

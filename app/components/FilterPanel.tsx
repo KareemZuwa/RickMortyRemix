@@ -7,6 +7,7 @@ interface FilterPanelProps {
   onDimensionFilterChange: (dimension: string) => void;
   dimension: string | undefined;
   type: string | undefined;
+  setPage: (page: number) => void;
 }
 
 export const FilterPanel = ({
@@ -14,6 +15,7 @@ export const FilterPanel = ({
   onDimensionFilterChange,
   dimension,
   type,
+  setPage,
 }: FilterPanelProps) => {
   const [defaultType, setDefaultType] = useState(type);
   const [defaultDimension, setDefaultDimension] = useState(dimension);
@@ -44,14 +46,14 @@ export const FilterPanel = ({
     if (!allTypesIsLoading && uniqueTypes.length > 0) {
       setDefaultType(uniqueTypes[0]);
     }
-  }, [allTypesIsLoading, uniqueTypes]);
+  }, [allTypesIsLoading, uniqueTypes, setPage]);
 
   useEffect(() => {
     // Set the default dimension value when dimensions are loaded or changed
     if (!allDimensionsIsLoading && uniqueDimensions.length > 0) {
       setDefaultDimension(uniqueDimensions[0]);
     }
-  }, [allDimensionsIsLoading, uniqueDimensions]);
+  }, [allDimensionsIsLoading, uniqueDimensions, setPage]);
 
   // Handle loading and errors
   if (allTypesIsLoading || allDimensionsIsLoading)
@@ -77,9 +79,10 @@ export const FilterPanel = ({
         className="w-full sm:w-40 border-2 border-gray-900 rounded-md"
         id="typeDropdown"
         options={typeOptions}
-        onChange={(selectedOption) =>
-          onTypeFilterChange(selectedOption?.value || "")
-        }
+        onChange={(selectedOption) => {
+          onTypeFilterChange(selectedOption?.value || "");
+          setPage(1);
+        }}
         defaultValue={{ value: defaultType, label: "All Types" }}
       />
 
@@ -87,9 +90,10 @@ export const FilterPanel = ({
         className="w-full sm:w-40 border-2 border-gray-900 rounded-md"
         id="dimensionDropdown"
         options={dimensionOptions}
-        onChange={(selectedOption) =>
-          onDimensionFilterChange(selectedOption?.value || "")
-        }
+        onChange={(selectedOption) => {
+          onDimensionFilterChange(selectedOption?.value || "");
+          setPage(1);
+        }}
         defaultValue={{ value: defaultDimension, label: "All Dimensions" }}
       />
     </div>

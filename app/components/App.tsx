@@ -20,7 +20,7 @@ const App = () => {
               <div>Error: something went wrong while fetching data</div>
             </div>
           ) : isLoading ? (
-            <div className="h-full w-full flex items-center justify-center py-16">
+            <div className="h-full w-full flex items-center justify-center py-32">
               <SpinnerLoader />
             </div>
           ) : (
@@ -36,15 +36,11 @@ const App = () => {
                 to Navigate the Locations
               </div>
               <ArrowDownIcon className="w-6 pb-4" />
-              <Link className="" to={`/locations/${page}`}>
-                <div>
-                  <img
-                    className="w-40 h-40"
-                    src="favicon.ico"
-                    alt="icon"
-                  />
-                </div>
-              </Link>
+              <button type="button">
+                <Link className="" to={`/locations/${page}`}>
+                  <img className="w-40 h-40" src="favicon.ico" alt="icon" />
+                </Link>
+              </button>
               <p className="pt-4 text-xs text-center">
                 "This application is the result of a coding assignment. Wubba
                 Lubba Dub Dub!"

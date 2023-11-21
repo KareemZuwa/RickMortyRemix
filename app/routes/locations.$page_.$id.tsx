@@ -10,14 +10,6 @@ const LocationDetail = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useLocation(id || "");
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: fetching gone wrong</div>;
-  }
-
   return (
     <div>
       <AppLayout>
@@ -28,7 +20,7 @@ const LocationDetail = () => {
                 <div>Error: something went wrong while fetching data</div>
               </div>
             ) : isLoading ? (
-              <div className="h-full w-full flex items-center justify-center py-16">
+              <div className="h-full w-full flex items-center justify-center py-44">
                 <SpinnerLoader />
               </div>
             ) : (

@@ -7,7 +7,6 @@ interface LocationAboutSectionProps {
 export const LocationAboutSection = ({
   location,
 }: LocationAboutSectionProps) => {
-  console.log(location);
   const numberOfDeadCharacters =
     location?.residents?.filter(
       (character) => character.status.toLowerCase() === "dead"

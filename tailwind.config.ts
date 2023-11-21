@@ -19,5 +19,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animated")],
+  plugins: [],
 } satisfies Config;

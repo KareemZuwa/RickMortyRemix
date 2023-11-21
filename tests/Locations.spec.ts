@@ -102,7 +102,7 @@ test.describe("Navigate to Locations page, test are divided in test steps", () =
     });
     console.log("The first 20 Locations items on page oneloads successfully");
 
-    await test.step("Ensure that pagination components are displayed, prev should be enabled", async () => {
+    await test.step("Ensure that pagination components are displayed, previous button should be disabled", async () => {
       await expect(paginationComponent).toBeVisible();
       await expect(prevButton).toBeDisabled();
       await expect(nextButton).toBeVisible();

@@ -52,6 +52,11 @@ test.describe("Navigate to Locations page, test are divided in test steps", () =
     });
     const locationsUL = page.getByTestId("locations");
     const paginationComponent = page.getByLabel("Pagination");
+    const nextButton = page.getByRole("button", { name: "Next", exact: true });
+    const prevButton = page.getByRole("button", {
+      name: "Previous",
+      exact: true,
+    });
     // End of Variables
 
     // Test steps
@@ -99,9 +104,10 @@ test.describe("Navigate to Locations page, test are divided in test steps", () =
 
     await test.step("Ensure that pagination components are displayed, prev should be enabled", async () => {
       await expect(paginationComponent).toBeVisible();
-      // await expect(locationCardEarthC137).toBeVisible();
+      await expect(prevButton).toBeDisabled();
+      await expect(nextButton).toBeVisible();
     });
-    console.log("Fifth test step successful");
+    console.log("Pagination with disabled Previous button loads successfully");
   });
 });
 

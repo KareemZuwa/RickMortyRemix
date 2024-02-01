@@ -31,7 +31,6 @@ export const FilterPanel = ({
     error: allDimensionsError,
   } = useDimensions();
 
-  // useMemo to memoize uniqueTypes
   const uniqueTypes = useMemo(
     () => allTypesData?.uniqueTypes || [],
     [allTypesData]
@@ -42,34 +41,29 @@ export const FilterPanel = ({
   );
 
   useEffect(() => {
-    // Set the default type value when types are loaded or changed
     if (!allTypesIsLoading && uniqueTypes.length > 0) {
       setDefaultType(uniqueTypes[0]);
     }
   }, [allTypesIsLoading, uniqueTypes, setPage]);
 
   useEffect(() => {
-    // Set the default dimension value when dimensions are loaded or changed
     if (!allDimensionsIsLoading && uniqueDimensions.length > 0) {
       setDefaultDimension(uniqueDimensions[0]);
     }
   }, [allDimensionsIsLoading, uniqueDimensions, setPage]);
 
-  // Handle loading and errors
   if (allTypesIsLoading || allDimensionsIsLoading)
     return <p>Loading filters...</p>;
   if (allTypesError || allDimensionsError) {
     return <p>Error fetching filters</p>;
   }
 
-  // Create object options with 'value' and 'label' properties so react-select is happy
   const typeOptions = uniqueTypes.map((type) => ({ value: type, label: type }));
   const dimensionOptions = uniqueDimensions.map((dimension) => ({
     value: dimension,
     label: dimension,
   }));
 
-  // Add "All Types" and "All Dimensions" options to top of list
   typeOptions.unshift({ value: "", label: "All Types" });
   dimensionOptions.unshift({ value: "", label: "All Dimensions" });
 

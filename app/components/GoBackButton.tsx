@@ -5,7 +5,7 @@ const GoBackButton = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate(-1); // This will simulate going back one step in the history
+    navigate(-1);
   };
 
   return <button className="sm:text-lg" onClick={handleGoBack}>← Back to Locations</button>;

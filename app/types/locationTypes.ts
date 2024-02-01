@@ -1,9 +1,7 @@
-// Represents the 'origin' field
 export interface Origin {
   id: string;
 }
 
-// Represents the 'residents' field
 export interface Resident {
   id: string;
   name: string;
@@ -11,20 +9,18 @@ export interface Resident {
   species: string;
   gender: string;
   image: string;
-  origin: Origin; // Using the Origin type defined above
+  origin: Origin;
 }
 
-// Represents the 'results' field
 export interface LocationResult {
   id: string;
   name: string;
   type: string;
   dimension: string;
-  residents: Resident[]; // Using the Resident type defined above
+  residents: Resident[];
   created: string;
 }
 
-// Represents the 'info' field
 export interface LocationInfo {
   count: number;
   pages: number;
@@ -32,14 +28,12 @@ export interface LocationInfo {
   prev: number | null;
 }
 
-// Represents the overall structure of the query response
 export interface LocationQueryResponse {
   locations: {
-    info: LocationInfo; // Using the LocationInfo type defined above
-    results: LocationResult[]; // Using the LocationResult type defined above
+    info: LocationInfo;
+    results: LocationResult[];
   };
 }
-
 
 export interface GetLocationResponse {
   location: LocationResult | null;

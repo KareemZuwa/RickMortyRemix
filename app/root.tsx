@@ -7,7 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { QueryClient, QueryClientProvider } from 'react-query'; // Import QueryClient and QueryClientProvider
+import { QueryClient, QueryClientProvider } from "react-query"; // Import QueryClient and QueryClientProvider
 import stylesheet from "~/tailwind.css";
 
 export const links: LinksFunction = () => [
@@ -17,9 +17,7 @@ export const links: LinksFunction = () => [
 export default function App({ data }: { data: any }) {
   const queryClient = new QueryClient({
     defaultOptions: {
-      queries: {
-        // Your query options go here
-      },
+      queries: {},
     },
   });
 
@@ -36,7 +34,6 @@ export default function App({ data }: { data: any }) {
         <Links />
       </head>
       <body>
-        {/* Wrap the Outlet with QueryClientProvider */}
         <QueryClientProvider client={queryClient}>
           <Outlet />
         </QueryClientProvider>
